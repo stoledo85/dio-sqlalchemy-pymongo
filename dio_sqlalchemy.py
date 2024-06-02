@@ -2,7 +2,7 @@
 
 from sqlalchemy.orm import declarative_base, relationship, Session
 
-from sqlalchemy import Column, Float, ForeignKey, Integer, String, create_engine
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, create_engine,inspect
 
 Base = declarative_base()
 engine = create_engine("sqlite://")
@@ -41,6 +41,11 @@ class Conta(Base):
     def __repr__(self) -> str:
         return f"Conta(id={self.id!r},tipo={self.agencia!r},num={self.num!r},saldo={self.saldo!r})"
 
+
+insp = inspect(engine)
+Base.metadata.create_all(engine)
+
+#print(insp.get_table_names())
 
 with Session(engine) as session:
 
