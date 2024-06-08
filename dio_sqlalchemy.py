@@ -2,11 +2,11 @@
 
 from sqlalchemy.orm import declarative_base, relationship, Session
 
-from sqlalchemy import Column, Float, ForeignKey, Integer, String, create_engine,inspect
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, create_engine,inspect, MetaData
 
 Base = declarative_base()
 engine = create_engine("sqlite://")
-
+metadata_obj=MetaData(schema='contas')
 Base.metadata.create_all(engine)
 
 
